@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta charset="utf-8" />
+    <title>Calculator</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#calculateBtn').click(function () {
+                var hours = parseInt($('#hours').val());
+                if (isNaN(hours) || hours <= 0) {
+                    alert('Please enter a valid positive number for hours.');
+                    return;
+                }
+                var hourlyRate = 19;
+                var total = hours * hourlyRate;
+                $('#total').val('$' + total.toFixed(2));
+            });
+        });
+    </script>
+    <style>
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="button"] {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h2>What's my Rate Calculator'</h2>
+
+    <form id="calculatorForm">
+        <label for="hours">Number of hours needed:</label>
+        <input type="number" id="hours" min="1" required />
+        <br />
+
+        <label for="hourlyRate">Hourly charge:</label>
+        <input type="text" id="hourlyRate" value="$19 per hour" readonly />
+        <br />
+
+        <input type="button" value="Calculate Total" id="calculateBtn" />
+        <br />
+
+        <label for="total">Total:</label>
+        <input type="text" id="total" readonly />
+    </form>
+
+    <button onclick="window.location.href='@Url.Action("Index", "Home")'">Back to Home</button>
+</body>
+</html>
